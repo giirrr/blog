@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function App() {
   let post = "강남 우동 맛집";
-  //자료 잠깐 저장할 땐 변수
+
   let [글제목, 글제목변경] = useState([
     "남자 코드 추천",
     "강남 우동맛집",
@@ -16,6 +16,7 @@ function App() {
   ]);
   let [a2, b2] = useState(["17", "18", "19"]);
   let [따봉, 따봉변경] = useState(0);
+  let [modal, setModal] = useState(false);
 
   function 함수() {
     console.log(1);
@@ -62,10 +63,17 @@ function App() {
         <p>2월 {a2[1]}일 발행</p>
       </div>
       <div className="list">
-        <h4>{글제목[2]}</h4>
+        <h4>
+          <button onClick={() => setModal(modal == false ? true : false)}>
+            {/* 아래 코딩애플,위에 내가 쓴 답
+          {/* <button onClick={ ()=>{ setModal(!modal) } }> {글제목[0]} </button> */}
+
+            {글제목[2]}
+          </button>
+        </h4>
         <p>2월 {a2[2]}일 발행</p>
       </div>
-      <Modal></Modal>
+      {modal == true ? <Modal /> : null}
     </div>
   );
 }
