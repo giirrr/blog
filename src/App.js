@@ -4,18 +4,18 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  let post = "강남 우동 맛집";
-
   let [글제목, 글제목변경] = useState([
     "남자 코드 추천",
     "강남 우동맛집",
     "파이썬 독학",
   ]);
-  let [a2, b2] = useState(["17", "18", "19"]);
+
   let [따봉, 따봉변경] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
   let [입력값, 입력값변경] = useState("");
+  let [input, setInput] = useState("");
+
   return (
     <div className="App">
       <div className="black-nav">
@@ -35,27 +35,45 @@ function App() {
               <span
                 onClick={(e) => {
                   e.stopPropagation();
-                  따봉변경(따봉 + 1);
+                  let copy = [...따봉];
+                  copy[i] = copy[i] + 1;
+                  따봉변경(copy);
                 }}
               >
                 💕
               </span>
-              {따봉}
+              {따봉[i]}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const 새글제목 = 글제목.filter((e) => e !== 글제목[i]);
+                  글제목변경(새글제목);
+                }}
+              >
+                ❌
+              </button>
             </h4>
-            <p>2월 {a2[1]}일 발행</p>
+            <p>2월 17일 발행</p>
           </div>
         );
       })}
+
       <input
         onChange={(e) => {
           입력값변경(e.target.value);
-          console.log(입력값);
         }}
       />
+      <button
+        onClick={() => {
+          let input = 입력값;
+          글제목변경([...글제목, input]);
+          console.log({ 글제목 });
+        }}
+      >
+        글발행
+      </button>
 
-      {modal == true ? (
-        <Modal title={title} 글수정={글제목변경} 글제목={글제목} />
-      ) : null}
+      {modal == true ? <Modal title={title} 글제목={글제목} /> : null}
     </div>
   );
 }
