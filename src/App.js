@@ -14,7 +14,6 @@ function App() {
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
   let [입력값, 입력값변경] = useState("");
-  let [input, setInput] = useState("");
 
   return (
     <div className="App">
@@ -46,8 +45,9 @@ function App() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  const 새글제목 = 글제목.filter((e) => e !== 글제목[i]);
-                  글제목변경(새글제목);
+                  let copy = [...글제목];
+                  copy.splice(i, 1);
+                  글제목변경(copy);
                 }}
               >
                 ❌
@@ -65,9 +65,9 @@ function App() {
       />
       <button
         onClick={() => {
-          let input = 입력값;
-          글제목변경([...글제목, input]);
-          console.log({ 글제목 });
+          let copy = [...글제목];
+          copy.unshift(입력값);
+          글제목변경(copy);
         }}
       >
         글발행
