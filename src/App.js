@@ -15,7 +15,7 @@ function App() {
     "가가가",
   ]);
   let [a2, b2] = useState(["17", "18", "19"]);
-  let [따봉, 따봉변경] = useState(0);
+  let [따봉, 따봉변경] = useState([0, 0, 0, 0, 0, 0]);
   let [modal, setModal] = useState(false);
 
   function 함수() {
@@ -76,6 +76,7 @@ function App() {
           </div>
         );
       })} */}
+
       {글제목.map(function (a, i) {
         return (
           <div className="list" key="0">
@@ -84,12 +85,14 @@ function App() {
               {글제목[i]}
               <span
                 onClick={() => {
-                  따봉변경(따봉 + 1);
+                  let copy = [...따봉];
+                  copy[i] = copy[i] + 1;
+                  따봉변경(copy);
                 }}
               >
                 💕
               </span>
-              {따봉}
+              {따봉[i]}
             </h4>
             <p>2월 {a2[1]}일 발행</p>
           </div>
