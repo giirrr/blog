@@ -14,6 +14,7 @@ function App() {
   let [a2, b2] = useState(["17", "18", "19"]);
   let [따봉, 따봉변경] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
+  let [title, setTitle] = useState(0);
 
   return (
     <div className="App">
@@ -27,6 +28,7 @@ function App() {
             <h4
               onClick={() => {
                 setModal(true);
+                setTitle(i);
               }}
             >
               {글제목[i]}
@@ -43,25 +45,20 @@ function App() {
           </div>
         );
       })}
+
       {modal == true ? (
-        <Modal color={"yellow"} 글수정={글제목변경} 글제목={글제목} />
+        <Modal title={title} 글수정={글제목변경} 글제목={글제목} />
       ) : null}
     </div>
   );
 }
 function Modal(props) {
   return (
-    <div className="modal" style={{ background: props.color }}>
-      <h4>{props.글제목[0]}</h4>
+    <div className="modal">
+      <h4>{props.글제목[props.title]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
-      <button
-        onClick={() => {
-          props.글수정(["여자 코드 추천", "강남 우동맛집", "파이썬 독학"]);
-        }}
-      >
-        글수정
-      </button>
+      <button>글수정</button>
     </div>
   );
 }
