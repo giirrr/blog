@@ -21,14 +21,14 @@ function App() {
   function 함수() {
     console.log(1);
   }
-  let 글제목2 = [];
+
   return (
     <div className="App">
       <div className="black-nav">
-        <h4>{logo}</h4>
+        <h4>ReactBlog</h4>
       </div>
 
-      <div className="list">
+      {/* <div className="list">
         <button
           onClick={() => {
             let copy = [...글제목];
@@ -58,21 +58,43 @@ function App() {
         </h4>
         <p>2월 {a2[0]}일 발행</p>
       </div>
-      <div className="list">
-        <h4>{글제목[1]}</h4>
-        <p>2월 {a2[1]}일 발행</p>
-      </div>
+
       <div className="list">
         <h4>
           <button onClick={() => setModal(modal == false ? true : false)}>
-            {/* 아래 코딩애플,위에 내가 쓴 답
-          {/* <button onClick={ ()=>{ setModal(!modal) } }> {글제목[0]} </button> */}
-
             {글제목[2]}
           </button>
         </h4>
         <p>2월 {a2[2]}일 발행</p>
-      </div>
+      </div> */}
+
+      {/* {[1, 2, 3].map(function () {
+        return (
+          <div className="list">
+            <h4>{글제목[1]}</h4>
+            <p>2월 {a2[1]}일 발행</p>
+          </div>
+        );
+      })} */}
+      {글제목.map(function (a, i) {
+        return (
+          <div className="list" key="0">
+            {/* <h4>{a}</h4> 밑에랑 같은 기능 */}
+            <h4>
+              {글제목[i]}
+              <span
+                onClick={() => {
+                  따봉변경(따봉 + 1);
+                }}
+              >
+                💕
+              </span>
+              {따봉}
+            </h4>
+            <p>2월 {a2[1]}일 발행</p>
+          </div>
+        );
+      })}
       {modal == true ? <Modal /> : null}
     </div>
   );
